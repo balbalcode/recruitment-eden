@@ -21,11 +21,20 @@
 				'id' => 3,
 				'name' => 'Foo Bar', 'image' => array( 'url' => '/pub/foobar.jpg')
 			)
-		);
+		);		
 
-		foreach ($data as $key => $value) {
-			echo$
+		function semiRecursive($array) {
+			$finalData = [];
+			foreach ($array as $key => $vals) {
+				array_push($finalData, $vals["image"]["url"]);
+			}
+			return $finalData;
 		}
+
+		$finalData = semiRecursive($data);
+		echo "<pre>";
+		print_r($finalData);
+		echo "</pre>";
 		?>
 
 
@@ -35,14 +44,13 @@
 	var data = [
 	{type:"Foo", year:1995},
 	{type:"Bar", year:1993},
-	{type:"Foobar", year : 2020}
+	{type:"Foobar", year : 2020},
 	];
 
 	// this is only sort a - b so we can use array.sort(funct => a-b)
 	let sortedData = data.sort((prev, next) =>{
-		return (next - prev)
+		return (prev.year - next.year)
 	})
-	console.log(data, "DATA")
 	console.log(sortedData , "SORTED DATA")
 </script>
 </html>
